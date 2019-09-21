@@ -72,7 +72,7 @@ public class Main2Activity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Value> call, Throwable t) {
-                progressDialog.dismiss();
+                //progressDialog.dismiss();
                 Toast.makeText(context, "Koneksi Internet Bermasalah", Toast.LENGTH_SHORT).show();
 
             }

@@ -1,6 +1,7 @@
 package com.example.topscoresepl.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,22 +12,70 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.topscoresepl.R;
+import com.example.topscoresepl.model.PictPlayer;
 import com.example.topscoresepl.model.Player;
 import com.example.topscoresepl.model.Scorer;
 import com.example.topscoresepl.model.Value;
+import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Callback;
 
 public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresHolder> {
     List<Scorer> allscores;
     Context context;
-    String nomor;
+    Integer nomor, id, image;
+    private ArrayList<PictPlayer> pictPlayers;
+    HashMap<Integer, String> foto =  new HashMap<Integer, String>();
 
     public ScoresAdapter(Context context, List<Scorer> scoreslist) {
         this.context = context;
         this.allscores = scoreslist;
+
+        /*pictPlayers = new ArrayList<>();
+        pictPlayers.add(new PictPlayer(7891, R.drawable.aguero));
+        pictPlayers.add(new PictPlayer(7985, R.drawable.tammy));
+        pictPlayers.add(new PictPlayer(7801, R.drawable.au));
+        pictPlayers.add(new PictPlayer(24121, R.drawable.teemu));
+        pictPlayers.add(new PictPlayer(3329, R.drawable.sterling));
+        pictPlayers.add(new PictPlayer(3754, R.drawable.salah));
+        pictPlayers.add(new PictPlayer(3626, R.drawable.mane));
+        pictPlayers.add(new PictPlayer(8054, R.drawable.ashleybarnes));
+        pictPlayers.add(new PictPlayer(3331, R.drawable.rashford));
+        pictPlayers.add(new PictPlayer(8004, R.drawable.harrykane));
+        pictPlayers.add(new PictPlayer(2221, R.drawable.moura));*/
+    }
+
+    public HashMap<Integer, String> getFoto() {
+        foto.put(7891, "https://i.imgur.com/eNZpurw.png");
+        foto.put(7985, "https://i.imgur.com/pA1zFrE.png");
+        foto.put(7801, "https://i.imgur.com/1iTySnu.png");
+        foto.put(24121, "https://i.imgur.com/kVHOw4L.png");
+        foto.put(3329, "https://i.imgur.com/68uBIiL.png");
+        foto.put(3754, "https://i.imgur.com/HHNsxZm.png");
+        foto.put(3626, "https://i.imgur.com/0dr3QtV.png");
+        foto.put(8054, "https://i.imgur.com/FfJOEQS.png");
+        foto.put(3331, "https://i.imgur.com/IRI2UgH.png");
+        foto.put(8004, "https://i.imgur.com/KYnnQ4G.png");
+        foto.put(3254, "https://i.imgur.com/SPdzrlR.png");
+        foto.put(3196, "https://i.imgur.com/ptJYlW3.png");
+        foto.put(3236, "https://i.imgur.com/7lKOyDg.png");
+        foto.put(3184, "https://i.imgur.com/zBDshSm.png");
+        foto.put(7599, "https://i.imgur.com/O53e0w1.png");
+        foto.put(3371, "https://i.imgur.com/EqW5x6g.png");
+        foto.put(3233, "https://i.imgur.com/QcFyhO8.png");
+        foto.put(7974, "https://i.imgur.com/YzrzwsI.png");
+        foto.put(3366, "https://i.imgur.com/1BEmfIt.png");
+        foto.put(3372, "https://i.imgur.com/RybEX5I.png");
+        foto.put(3324, "https://i.imgur.com/nKkgxWr.png");
+        foto.put(3343, "https://i.imgur.com/TO1xfzF.png");
+        foto.put(8003, "https://i.imgur.com/GgBTFtJ.png");
+
+        return foto;
     }
 
     @NonNull
@@ -40,13 +89,28 @@ public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresHold
     @Override
     public void onBindViewHolder(@NonNull ScoresAdapter.ScoresHolder holder, int position) {
         final Scorer allitemscorers = allscores.get(position);
+        //final PictPlayer pictPlayer1 = pictPlayers.get(position);
+
         holder.tvNamaPemain.setText(allitemscorers.getPlayer().getName());
         holder.tvClub.setText(allitemscorers.getTeam().getName());
         holder.tvGoals.setText(Integer.toString(allitemscorers.getNumberOfGoals()));
+        holder.tvNegara.setText(allitemscorers.getPlayer().getNationality());
 
-        //holder.tvGoals.setText(allitemscorers.getPlayer().getNationality());
+        nomor = (allitemscorers.getPlayer().getId());
 
+        for (Map.Entry map : getFoto().entrySet()) {
 
+            if (map.getKey().equals(nomor)) {
+                Log.d("Id Pemain", map.getKey() + "+" +nomor);
+                Picasso.get().load((String) map.getValue())
+                        .into(holder.ivNomor);
+
+                break;
+            } else {
+                Picasso.get().load(R.drawable.photomissing)
+                        .into(holder.ivNomor);
+            }
+        }
     }
 
     @Override
@@ -59,6 +123,7 @@ public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresHold
         public TextView tvNamaPemain;
         public TextView tvClub;
         public TextView tvGoals;
+        public TextView tvNegara;
         public ImageView ivNomor;
 
         public ScoresHolder(@NonNull View itemView) {
@@ -66,6 +131,7 @@ public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresHold
             tvNamaPemain = itemView.findViewById(R.id.namapemain);
             tvClub = itemView.findViewById(R.id.club);
             tvGoals = itemView.findViewById(R.id.goals);
+            tvNegara = itemView.findViewById(R.id.negara);
             ivNomor = itemView.findViewById(R.id.fotopemain);
 
         }
