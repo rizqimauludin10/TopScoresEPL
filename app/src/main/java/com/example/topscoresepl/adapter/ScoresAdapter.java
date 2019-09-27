@@ -99,12 +99,10 @@ public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresHold
         nomor = (allitemscorers.getPlayer().getId());
 
         for (Map.Entry map : getFoto().entrySet()) {
-
             if (map.getKey().equals(nomor)) {
                 Log.d("Id Pemain", map.getKey() + "+" +nomor);
                 Picasso.get().load((String) map.getValue())
                         .into(holder.ivNomor);
-
                 break;
             } else {
                 Picasso.get().load(R.drawable.photomissing)

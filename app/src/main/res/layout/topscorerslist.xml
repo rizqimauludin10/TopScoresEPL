@@ -9,16 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="20dp"
-        >
-
+        android:padding="20dp" >
 
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/fotopemain"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/aguero"
+            android:background="#C45959"
             android:textSize="16sp"
             android:layout_marginRight="10dp"/>
 
@@ -26,16 +24,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-
             android:padding="10dp">
 
             <TextView
                 android:id="@+id/namapemain"
+                android:maxLength="10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nama Pemain"
                 android:padding="3dp"
                 android:textStyle="bold"
+                android:textColor="#FFFF"
                 android:textSize="18sp" />
 
             <TextView
@@ -44,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:padding="3dp"
                 android:text="Negara"
+                android:textColor="#FFFF"
                 android:textSize="14sp" />
 
 
@@ -53,6 +53,7 @@
                 android:layout_height="wrap_content"
                 android:padding="3dp"
                 android:text="Club"
+                android:textColor="#FFFF"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -69,6 +70,7 @@
                 android:padding="3dp"
                 android:text="Goal"
                 android:textAlignment="viewEnd"
+                android:textColor="#FFFF"
                 android:textStyle="bold"
                 android:textSize="18sp" />
         </LinearLayout>
