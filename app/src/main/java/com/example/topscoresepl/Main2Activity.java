@@ -7,18 +7,21 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.topscoresepl.adapter.ScoresAdapter;
 import com.example.topscoresepl.apihelper.BaseApiService;
 import com.example.topscoresepl.apihelper.UtilsApi;
-import com.example.topscoresepl.model.Player;
 import com.example.topscoresepl.model.Scorer;
+import com.example.topscoresepl.model.Season;
 import com.example.topscoresepl.model.Value;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +34,13 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class Main2Activity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    ProgressDialog progressDialog;
     Context context;
     private List<Scorer> playerList = new ArrayList<>();
+
+
     private RecyclerView.Adapter adapter;
     private BaseApiService baseApiService;
+    private ShimmerFrameLayout mShimmerViewContainer;
     String token = "33a4fff7578c44fe83ffa0a1f34c9cd6";
 
 
@@ -44,16 +49,20 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //getSupportActionBar().setTitle("Top Scorers List");
 
-        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbarLayout.setTitle("Premier League");
-        collapsingToolbarLayout.setCollapsedTitleTextColor(ContextCompat.getColor(this,R.color.colorAccent));
-        collapsingToolbarLayout.setExpandedTitleColor(ContextCompat.getColor(this,R.color.colorPrimary));
+        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
+        collapsingToolbarLayout.setTitle("");
+        collapsingToolbarLayout.setCollapsedTitleTextColor(ContextCompat.getColor(this,R.color.white));
+        collapsingToolbarLayout.setExpandedTitleColor(ContextCompat.getColor(this,R.color.white));
 
-        recyclerView = (RecyclerView) findViewById(R.id.rvscores);
+        mShimmerViewContainer = findViewById(R.id.shimmer_view_container);
+
+        recyclerView = findViewById(R.id.rvscores);
         baseApiService = UtilsApi.getApiService();
 
         adapter = new ScoresAdapter(context, playerList);
@@ -71,22 +80,25 @@ public class Main2Activity extends AppCompatActivity {
 
         baseApiService.getValue(token).enqueue(new Callback<Value>() {
             @Override
-            public void onResponse(Call<Value> call, Response<Value> response) {
+            public void onResponse(@NotNull Call<Value> call, Response<Value> response) {
                 if (response.isSuccessful()) {
-                    //progressDialog.dismiss();
                     playerList = response.body().getScorers();
                     recyclerView.setAdapter(new ScoresAdapter(context, playerList));
                     adapter.notifyDataSetChanged();
+
+                    mShimmerViewContainer.stopShimmer();
+                    mShimmerViewContainer.setVisibility(View.GONE);
+                    recyclerView.smoothScrollToPosition(0);
                 } else {
-                    //progressDialog.dismiss();
+                    mShimmerViewContainer.stopShimmer();
                     Toast.makeText(context, "Failed get data", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<Value> call, Throwable t) {
-                //progressDialog.dismiss();
-                Toast.makeText(context, "Koneksi Internet Bermasalah", Toast.LENGTH_SHORT).show();
+            public void onFailure(@NotNull Call<Value> call, Throwable t) {
+                mShimmerViewContainer.stopShimmer();
+                Toast.makeText(context, "Not Internet Connection", Toast.LENGTH_SHORT).show();
 
             }
         });

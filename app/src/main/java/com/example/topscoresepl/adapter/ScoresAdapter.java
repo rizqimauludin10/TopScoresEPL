@@ -15,6 +15,7 @@ import com.example.topscoresepl.R;
 import com.example.topscoresepl.model.PictPlayer;
 import com.example.topscoresepl.model.Player;
 import com.example.topscoresepl.model.Scorer;
+import com.example.topscoresepl.model.Season;
 import com.example.topscoresepl.model.Value;
 import com.squareup.picasso.Picasso;
 
@@ -27,6 +28,7 @@ import retrofit2.Callback;
 
 public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresHolder> {
     List<Scorer> allscores;
+    Season seasons;
     Context context;
     Integer nomor, id, image;
     private ArrayList<PictPlayer> pictPlayers;
@@ -35,6 +37,7 @@ public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresHold
     public ScoresAdapter(Context context, List<Scorer> scoreslist) {
         this.context = context;
         this.allscores = scoreslist;
+
 
         /*pictPlayers = new ArrayList<>();
         pictPlayers.add(new PictPlayer(7891, R.drawable.aguero));
@@ -89,13 +92,22 @@ public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresHold
     @Override
     public void onBindViewHolder(@NonNull ScoresAdapter.ScoresHolder holder, int position) {
         final Scorer allitemscorers = allscores.get(position);
-        //final PictPlayer pictPlayer1 = pictPlayers.get(position);
+
+       // final Season season = sea
+
+        String item = (String.valueOf(holder.getAdapterPosition() + 1));
+
+        /*holder.tvSeasonOne.setText(season.getStartDate());
+        holder.tvSeasonTwo.setText(season.getEndDate());*/
+        //holder.tvMatchday.setText(Integer.toString(seasons.getCurrentMatchday()));
 
         holder.tvNamaPemain.setText(allitemscorers.getPlayer().getName());
         holder.tvClub.setText(allitemscorers.getTeam().getName());
         holder.tvGoals.setText(Integer.toString(allitemscorers.getNumberOfGoals()));
         holder.tvNegara.setText(allitemscorers.getPlayer().getNationality());
+        holder.tvPosition.setText(item);
 
+        Log.d("Id Pemain", String.valueOf(holder.getAdapterPosition() + 1));
         nomor = (allitemscorers.getPlayer().getId());
 
         for (Map.Entry map : getFoto().entrySet()) {
@@ -122,15 +134,22 @@ public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresHold
         public TextView tvClub;
         public TextView tvGoals;
         public TextView tvNegara;
+        public TextView tvPosition;
+        public TextView tvSeasonOne, tvSeasonTwo, tvMatchday;
         public ImageView ivNomor;
 
         public ScoresHolder(@NonNull View itemView) {
             super(itemView);
+            tvPosition = itemView.findViewById(R.id.position);
             tvNamaPemain = itemView.findViewById(R.id.namapemain);
             tvClub = itemView.findViewById(R.id.club);
             tvGoals = itemView.findViewById(R.id.goals);
             tvNegara = itemView.findViewById(R.id.negara);
             ivNomor = itemView.findViewById(R.id.fotopemain);
+            tvSeasonOne = itemView.findViewById(R.id.tvSeasonOne);
+            tvSeasonTwo = itemView.findViewById(R.id.tvSeasonTwo);
+            tvMatchday = itemView.findViewById(R.id.tvMatchday);
+
 
         }
     }

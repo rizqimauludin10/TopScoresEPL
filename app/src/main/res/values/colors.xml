@@ -3,4 +3,8 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="white">#FFFF</color>
+    <color name="placeholder_bg">#dddddd</color>
+    <color name="background_bar">#630A4B</color>
+    <color name="background_barshadow">#36083E</color>
 </resources>
