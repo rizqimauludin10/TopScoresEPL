@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.topscoresepl.adapter.ScoresAdapter;
@@ -43,6 +45,10 @@ public class Main2Activity extends AppCompatActivity {
     private ShimmerFrameLayout mShimmerViewContainer;
     String token = "33a4fff7578c44fe83ffa0a1f34c9cd6";
 
+    TextView tvMatchday, tvSeasonOne, tvSeasonTwo;
+    Integer currentMatchday;
+    String seasonOne, seasonTwo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,14 +76,16 @@ public class Main2Activity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
+        tvMatchday = (TextView) findViewById(R.id.tvMatchday);
+        tvSeasonOne = (TextView) findViewById(R.id.tvSeasonOne);
+        tvSeasonTwo = (TextView) findViewById(R.id.tvSeasonTwo);
+
         //GetAPI
         getResultScores();
 
     }
 
     private void getResultScores() {
-        //progressDialog = ProgressDialog.show(context, null, "Harap Tunggu...", true, false);
-
         baseApiService.getValue(token).enqueue(new Callback<Value>() {
             @Override
             public void onResponse(@NotNull Call<Value> call, Response<Value> response) {
@@ -85,6 +93,17 @@ public class Main2Activity extends AppCompatActivity {
                     playerList = response.body().getScorers();
                     recyclerView.setAdapter(new ScoresAdapter(context, playerList));
                     adapter.notifyDataSetChanged();
+
+                    currentMatchday = response.body().getSeason().getCurrentMatchday();
+                    seasonOne = response.body().getSeason().getStartDate();
+                    seasonTwo = response.body().getSeason().getEndDate();
+
+                    tvMatchday.setText(String.valueOf(currentMatchday));
+                    tvSeasonOne.setText(seasonOne);
+                    tvSeasonTwo.setText(seasonTwo);
+
+                    System.out.println("response output version SOUT =>" + response.body().getSeason().getCurrentMatchday());
+
 
                     mShimmerViewContainer.stopShimmer();
                     mShimmerViewContainer.setVisibility(View.GONE);

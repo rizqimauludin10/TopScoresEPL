@@ -13,10 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.topscoresepl.R;
 import com.example.topscoresepl.model.PictPlayer;
-import com.example.topscoresepl.model.Player;
 import com.example.topscoresepl.model.Scorer;
 import com.example.topscoresepl.model.Season;
-import com.example.topscoresepl.model.Value;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -37,20 +35,6 @@ public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresHold
     public ScoresAdapter(Context context, List<Scorer> scoreslist) {
         this.context = context;
         this.allscores = scoreslist;
-
-
-        /*pictPlayers = new ArrayList<>();
-        pictPlayers.add(new PictPlayer(7891, R.drawable.aguero));
-        pictPlayers.add(new PictPlayer(7985, R.drawable.tammy));
-        pictPlayers.add(new PictPlayer(7801, R.drawable.au));
-        pictPlayers.add(new PictPlayer(24121, R.drawable.teemu));
-        pictPlayers.add(new PictPlayer(3329, R.drawable.sterling));
-        pictPlayers.add(new PictPlayer(3754, R.drawable.salah));
-        pictPlayers.add(new PictPlayer(3626, R.drawable.mane));
-        pictPlayers.add(new PictPlayer(8054, R.drawable.ashleybarnes));
-        pictPlayers.add(new PictPlayer(3331, R.drawable.rashford));
-        pictPlayers.add(new PictPlayer(8004, R.drawable.harrykane));
-        pictPlayers.add(new PictPlayer(2221, R.drawable.moura));*/
     }
 
     public HashMap<Integer, String> getFoto() {
@@ -77,6 +61,8 @@ public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresHold
         foto.put(3324, "https://i.imgur.com/nKkgxWr.png");
         foto.put(3343, "https://i.imgur.com/TO1xfzF.png");
         foto.put(8003, "https://i.imgur.com/GgBTFtJ.png");
+        foto.put(3330, "https://i.imgur.com/ZgtnjwA.png");
+        foto.put(8251, "https://i.imgur.com/AGmPnbU.png");
 
         return foto;
     }
