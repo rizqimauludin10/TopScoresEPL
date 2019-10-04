@@ -7,4 +7,6 @@
     <color name="placeholder_bg">#dddddd</color>
     <color name="background_bar">#630A4B</color>
     <color name="background_barshadow">#36083E</color>
+    <color name="imagebg">#DAF2F5</color>
+    <color name="text">#10115E</color>
 </resources>

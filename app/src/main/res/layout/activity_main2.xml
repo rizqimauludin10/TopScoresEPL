@@ -51,7 +51,7 @@
                     android:id="@+id/ketGoals"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Goals"
+                    android:text="Season"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:paddingBottom="5dp"
@@ -64,18 +64,31 @@
                     android:layout_below="@id/ketGoals"
                     android:textColor="@color/white"
                     android:textSize="14sp"
+                    android:textStyle="bold"
                     android:maxLength="4"
                     android:paddingBottom="5dp"
                     android:text="0000/"/>
 
                 <TextView
+                    android:id="@+id/garing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@id/tvSeasonOne"
+                    android:layout_below="@id/ketGoals"/>
+
+                <TextView
                     android:id="@+id/tvSeasonTwo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/tvSeasonOne"
+                    android:layout_toRightOf="@id/garing"
                     android:layout_below="@id/ketGoals"
                     android:textColor="@color/white"
                     android:textSize="14sp"
+                    android:textStyle="bold"
                     android:paddingBottom="5dp"
                     android:maxLength="4"
                     android:text="0000"/>
@@ -95,6 +108,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="00"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
                     android:textColor="@color/white"
                     android:layout_below="@id/tvSeasonTwo"
                     android:layout_toRightOf="@id/ketMatchday"/>
@@ -116,11 +131,13 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Scorers"
+                    android:text="Goal Scorers"
                     android:textSize="20sp"
                     android:layout_marginStart="50dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white"
+                    android:letterSpacing="-0.07"
+                    fontPath="font/Quicksand-Bold.otf"
+                    tools:ignore="MissingPrefix"/>
 
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>

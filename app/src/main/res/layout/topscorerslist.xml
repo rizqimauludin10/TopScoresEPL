@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/myLinear"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -16,23 +19,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1"
-            android:textSize="14sp"/>
+            android:textStyle="bold"
+            android:textColor="@color/imagebg"
+            android:layout_gravity="center_vertical"
+            android:textSize="30sp"
+            android:layout_marginRight="8dp"/>
 
-        <ImageView
-            android:id="@+id/fotopemain"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:scaleType="centerCrop"
-            android:textSize="16sp"
-            android:layout_marginRight="10dp"/>
 
-        <!--<com.mikhaellopez.circularimageview.CircularImageView
-            android:id="@+id/fotopemain"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:scaleType="centerCrop"
-            android:textSize="16sp"
-            android:layout_marginRight="10dp"/>-->
+
+           <!-- <ImageView
+                android:id="@+id/fotopemain"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:textSize="16sp"
+                android:src="@drawable/photomissing"
+                android:layout_marginRight="8dp"/>-->
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/fotopemain"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/photomissing"
+                app:civ_background_color="@color/imagebg"
+                app:civ_border_color="@color/imagebg"
+                app:civ_border_width="0dp"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="8dp"/>
+
+
+
+
+
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -49,28 +68,37 @@
                 android:layout_height="wrap_content"
                 android:text="Nama Pemain"
                 android:padding="3dp"
-                android:textStyle="bold"
-                android:textColor="#1B1B1B"
+                fontPath="font/Quicksand-Bold.otf"
+                tools:ignore="MissingPrefix"
+                android:letterSpacing="-0.06"
+                android:textColor="@color/text"
                 android:textSize="18sp" />
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/negara"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="3dp"
                 android:text="Negara"
                 android:textColor="#1B1B1B"
-                android:textSize="14sp" />
+                android:textSize="14sp" />-->
+
+            <ImageView
+                android:id="@+id/clubLogo"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="centerInside"
+                />
 
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/club"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="3dp"
                 android:text="Club"
                 android:textColor="#1B1B1B"
-                android:textSize="14sp" />
+                android:textSize="14sp" />-->
 
         </LinearLayout>
 
@@ -85,10 +113,11 @@
                 android:layout_height="wrap_content"
                 android:padding="3dp"
                 android:text="Goal"
-                android:textAlignment="viewEnd"
+                android:textAlignment="center"
                 android:textColor="#1B1B1B"
                 android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                />
         </LinearLayout>
 
     </LinearLayout>
