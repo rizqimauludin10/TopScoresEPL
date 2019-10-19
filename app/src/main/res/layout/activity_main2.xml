@@ -14,7 +14,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="260dp"
         android:background="@color/background_barshadow"
         android:fitsSystemWindows="true">
 
@@ -42,53 +42,73 @@
                     android:contentDescription="@string/todo" />
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
-                android:paddingLeft="20dp">
+                android:layout_marginTop="60dp">
 
-                <TextView
-                    android:id="@+id/ketGoals"
+                <ImageView
+                    android:id="@+id/pl"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/pl"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="centerInside"/>
+
+    <!--            <TextView
+                    android:id="@+id/ketGoals"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Season"
                     android:textStyle="bold"
+                    android:layout_below="@id/pl"
                     android:textSize="18sp"
+                    android:textAlignment="center"
                     android:paddingBottom="5dp"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white" />-->
 
                 <TextView
                     android:id="@+id/tvSeasonOne"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/ketGoals"
+                    android:layout_below="@id/pl"
+                    android:layout_marginLeft="160dp"
+                    android:layout_marginTop="-10dp"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    android:textStyle="bold"
                     android:maxLength="4"
                     android:paddingBottom="5dp"
-                    android:text="0000/"/>
+                    android:text="0000"
+                    fontPath="font/Quicksand-Bold.otf"
+                    tools:ignore="MissingPrefix"
+                    android:letterSpacing="-0.06"/>
 
                 <TextView
                     android:id="@+id/garing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="/"
+                    android:layout_marginTop="-10dp"
+                    android:layout_marginRight="4dp"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    android:textStyle="bold"
+                    fontPath="font/Quicksand-Bold.otf"
+                    tools:ignore="MissingPrefix"
+                    android:letterSpacing="-0.06"
                     android:layout_toRightOf="@id/tvSeasonOne"
-                    android:layout_below="@id/ketGoals"/>
+                    android:layout_below="@id/pl"/>
 
                 <TextView
                     android:id="@+id/tvSeasonTwo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/garing"
-                    android:layout_below="@id/ketGoals"
+                    android:layout_below="@id/pl"
                     android:textColor="@color/white"
+                    android:layout_marginTop="-10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold"
+                    fontPath="font/Quicksand-Bold.otf"
+                    tools:ignore="MissingPrefix"
+                    android:letterSpacing="-0.06"
                     android:paddingBottom="5dp"
                     android:maxLength="4"
                     android:text="0000"/>
@@ -101,6 +121,10 @@
                     android:textStyle="bold"
                     android:textColor="@color/white"
                     android:textSize="16sp"
+                    fontPath="font/Quicksand-Bold.otf"
+                    tools:ignore="MissingPrefix"
+                    android:letterSpacing="-0.06"
+                    android:layout_marginLeft="150dp"
                     android:layout_below="@id/tvSeasonOne"/>
 
                 <TextView
@@ -110,6 +134,9 @@
                     android:text="00"
                     android:textStyle="bold"
                     android:textSize="16sp"
+                    fontPath="font/Quicksand-Bold.otf"
+                    tools:ignore="MissingPrefix"
+                    android:letterSpacing="-0.06"
                     android:textColor="@color/white"
                     android:layout_below="@id/tvSeasonTwo"
                     android:layout_toRightOf="@id/ketMatchday"/>

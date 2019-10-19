@@ -55,7 +55,6 @@ public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresHold
 
         String item = (String.valueOf(holder.getAdapterPosition() + 1));
 
-
         holder.tvNamaPemain.setText(allitemscorers.getPlayer().getName());
         //holder.tvClub.setText(allitemscorers.getTeam().getName());
         holder.tvGoals.setText(Integer.toString(allitemscorers.getNumberOfGoals()));
