@@ -20,11 +20,15 @@ public class AboutActivity extends AppCompatActivity {
     TextView emailLink;
     String Link = "https://www.dicoding.com/users/392388";
     ImageView back, github, linkedin, whatsapp, twitter;
+    StatusBar statusBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+
+        statusBar = new StatusBar(this);
+        statusBar.statusBarCall(AboutActivity.this);
 
         back = findViewById(R.id.backHomeAbout);
         github = findViewById(R.id.github);

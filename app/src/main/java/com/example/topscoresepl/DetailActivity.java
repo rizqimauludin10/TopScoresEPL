@@ -26,8 +26,11 @@ import com.squareup.picasso.Picasso;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -51,6 +54,7 @@ public class DetailActivity extends AppCompatActivity {
     private StatusBar statusBar;
     String DATE = "dd MMMM yyyy";
     String outputText;
+    SimpleDateFormat dateFormat;
 
     Context context;
     ProgressDialog progressDialog;
@@ -148,21 +152,16 @@ public class DetailActivity extends AppCompatActivity {
                     playerNationality = response.body().getNationality();
                     playerDate = response.body().getDateOfBirth();
 
-
-
-                    /*DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
-                    LocalDateTime dateTime = LocalDateTime.parse(playerDate, formatter);
-                    //System.out.println(dateTime.format(formatter2));*/
-
                     DateFormat outputFormat = new SimpleDateFormat(DATE, Locale.US);
                     DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
                     Date date = null;
                     try {
-                        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE);
+                        dateFormat = new SimpleDateFormat(DATE);
                         dateFormat.setTimeZone(TimeZone.getTimeZone("ID"));
                         date = inputFormat.parse(playerDate);
                         outputText = outputFormat.format(date);
+
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -181,7 +180,7 @@ public class DetailActivity extends AppCompatActivity {
                     if (shirtNumber != null) {
                         tvshirtNumber.setText(String.valueOf(shirtNumber));
                     } else {
-                        tvshirtNumber.setText("12");
+                        tvshirtNumber.setText("9");
                     }
 
                 } else {
@@ -192,6 +191,8 @@ public class DetailActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Player> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(context, "Failed get data", Toast.LENGTH_SHORT).show();
 
             }
         });

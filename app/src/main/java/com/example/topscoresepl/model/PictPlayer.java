@@ -31,6 +31,10 @@ public class PictPlayer {
         foto.put(8003, "https://i.imgur.com/GgBTFtJ.png");
         foto.put(3330, "https://i.imgur.com/ZgtnjwA.png");
         foto.put(8251, "https://i.imgur.com/AGmPnbU.png");
+        foto.put(8891, "https://i.imgur.com/UJMorig.png");
+        foto.put(6721, "https://i.imgur.com/26CXHQe.png");
+        foto.put(7984, "https://i.imgur.com/2EyM8rA.png");
+        foto.put(7875, "https://i.imgur.com/b1pLM1Q.png");
     }
 
     public HashMap<Integer, String> getFoto() {
