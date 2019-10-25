@@ -1,5 +1,6 @@
 package com.example.topscoresepl;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
@@ -8,8 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,7 +59,7 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-
+        baseApiService = UtilsApi.getApiService();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -69,7 +73,6 @@ public class Main2Activity extends AppCompatActivity {
         mShimmerViewContainer = findViewById(R.id.shimmer_view_container);
 
         recyclerView = findViewById(R.id.rvscores);
-        baseApiService = UtilsApi.getApiService();
 
         adapter = new ScoresAdapter(context, playerList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
@@ -86,7 +89,9 @@ public class Main2Activity extends AppCompatActivity {
     }
 
     private void getResultScores() {
-        baseApiService.getValue(token).enqueue(new Callback<Value>() {
+        baseApiService.getValue(
+                token
+        ).enqueue(new Callback<Value>() {
             @Override
             public void onResponse(@NotNull Call<Value> call, Response<Value> response) {
                 if (response.isSuccessful()) {
@@ -121,6 +126,27 @@ public class Main2Activity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id =item.getItemId();
+
+        if (id == R.id.about) {
+            Intent intent;
+            intent = new Intent(Main2Activity.this, AboutActivity.class);
+            startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
+
 
     }
 

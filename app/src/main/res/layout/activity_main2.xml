@@ -71,10 +71,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/pl"
-                    android:layout_marginLeft="160dp"
+                    android:layout_marginLeft="150dp"
                     android:layout_marginTop="-10dp"
                     android:textColor="@color/white"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     android:maxLength="4"
                     android:paddingBottom="5dp"
                     android:text="0000"
@@ -90,7 +90,7 @@
                     android:layout_marginTop="-10dp"
                     android:layout_marginRight="4dp"
                     android:textColor="@color/white"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     fontPath="font/Quicksand-Bold.otf"
                     tools:ignore="MissingPrefix"
                     android:letterSpacing="-0.06"
@@ -105,7 +105,7 @@
                     android:layout_below="@id/pl"
                     android:textColor="@color/white"
                     android:layout_marginTop="-10dp"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     fontPath="font/Quicksand-Bold.otf"
                     tools:ignore="MissingPrefix"
                     android:letterSpacing="-0.06"
@@ -150,21 +150,23 @@
                 app:layout_collapseMode="pin"
                 app:layout_scrollFlags="scroll|enterAlways">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_arrow_back_black_24dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Goal Scorers"
                     android:textSize="20sp"
-                    android:layout_marginStart="50dp"
                     android:textColor="@color/white"
                     android:letterSpacing="-0.07"
                     fontPath="font/Quicksand-Bold.otf"
                     tools:ignore="MissingPrefix"/>
+
+            </LinearLayout>
+
 
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
