@@ -4,12 +4,14 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
@@ -21,6 +23,15 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,12 +41,16 @@ public class DetailActivity extends AppCompatActivity {
 
     private BaseApiService baseApiService;
     String token = "33a4fff7578c44fe83ffa0a1f34c9cd6";
-    String firstName, playerPosition, playerClub;
+    String firstName, playerPosition, playerClub, playerCountry, playerNationality, playerDate;
+    Object playerDate2;
     Integer shirtNumber;
     Integer idExtras = 0;
     String playersimage;
-    TextView tvshirtNumber, tvplayerName, tvplayerPosition, tvplayerClub;
+    TextView tvshirtNumber, tvplayerName, tvplayerPosition, tvplayerClub, tvplayerCountry, tvplayerNationality, tvplayerDate;
     ImageView ivPictPlayers, back;
+    private StatusBar statusBar;
+    String DATE = "dd MMMM yyyy";
+    String outputText;
 
     Context context;
     ProgressDialog progressDialog;
@@ -45,6 +60,9 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        statusBar = new StatusBar(this);
+        statusBar.statusBarCall(DetailActivity.this);
 
         baseApiService = UtilsApi.getApiService();
 
@@ -85,6 +103,9 @@ public class DetailActivity extends AppCompatActivity {
         ivPictPlayers = findViewById(R.id.detailPict);
         tvplayerPosition = findViewById(R.id.playerPosition);
         tvplayerClub = findViewById(R.id.playerClub);
+        tvplayerCountry = findViewById(R.id.playerCountryofBirth);
+        tvplayerNationality = findViewById(R.id.playerNationality);
+        tvplayerDate = findViewById(R.id.playerDate);
         back = findViewById(R.id.backHome);
 
         Bundle bundle = getIntent().getExtras();
@@ -113,6 +134,7 @@ public class DetailActivity extends AppCompatActivity {
                 token,
                 idExtras
         ).enqueue(new Callback<Player>() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onResponse(Call<Player> call, Response<Player> response) {
                 progressDialog.dismiss();
@@ -122,10 +144,36 @@ public class DetailActivity extends AppCompatActivity {
                     firstName = response.body().getName();
                     shirtNumber = response.body().getShirtNumber();
                     playerPosition = response.body().getPosition();
+                    playerCountry = response.body().getCountryOfBirth();
+                    playerNationality = response.body().getNationality();
+                    playerDate = response.body().getDateOfBirth();
+
+
+
+                    /*DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+                    LocalDateTime dateTime = LocalDateTime.parse(playerDate, formatter);
+                    //System.out.println(dateTime.format(formatter2));*/
+
+                    DateFormat outputFormat = new SimpleDateFormat(DATE, Locale.US);
+                    DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+
+                    Date date = null;
+                    try {
+                        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE);
+                        dateFormat.setTimeZone(TimeZone.getTimeZone("ID"));
+                        date = inputFormat.parse(playerDate);
+                        outputText = outputFormat.format(date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
 
                     tvplayerName.setText(firstName);
                     tvplayerPosition.setText(playerPosition);
                     tvplayerClub.setText(playerClub);
+                    tvplayerCountry.setText(playerCountry);
+                    tvplayerNationality.setText(playerNationality);
+                    tvplayerDate.setText(outputText);
 
                     Picasso.get().load(playersimage)
                             .into(ivPictPlayers);

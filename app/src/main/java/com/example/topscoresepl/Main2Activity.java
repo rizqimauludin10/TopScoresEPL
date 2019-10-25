@@ -10,11 +10,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +46,8 @@ public class Main2Activity extends AppCompatActivity {
     RecyclerView recyclerView;
     Context context;
     private List<Scorer> playerList = new ArrayList<>();
+    private InternetCheck internetCheck;
+    private StatusBar statusBar;
 
 
     private RecyclerView.Adapter adapter;
@@ -59,7 +65,12 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+        statusBar = new StatusBar(this);
+        statusBar.statusBarCall(Main2Activity.this);
+
         baseApiService = UtilsApi.getApiService();
+
+        setInternetCheck();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -84,7 +95,7 @@ public class Main2Activity extends AppCompatActivity {
         tvSeasonTwo = (TextView) findViewById(R.id.tvSeasonTwo);
 
         //GetAPI
-        getResultScores();
+
 
     }
 
@@ -115,14 +126,14 @@ public class Main2Activity extends AppCompatActivity {
                     recyclerView.smoothScrollToPosition(0);
                 } else {
                     mShimmerViewContainer.stopShimmer();
-                    Toast.makeText(context, "Failed get data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Failed get data", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(@NotNull Call<Value> call, Throwable t) {
-                mShimmerViewContainer.stopShimmer();
-                Toast.makeText(context, "Not Internet Connection", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Not Internet Connection", Toast.LENGTH_SHORT).show();
+                //mShimmerViewContainer.stopShimmer();
 
             }
         });
@@ -153,5 +164,14 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+    public void setInternetCheck() {
+        internetCheck = new InternetCheck(getApplicationContext());
+        if (!internetCheck.isConnected(Main2Activity.this)) {
+            internetCheck.buildDialog(Main2Activity.this).show();
+        } else {
+            getResultScores();
+        }
     }
 }

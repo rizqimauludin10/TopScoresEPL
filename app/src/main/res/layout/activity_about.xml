@@ -74,7 +74,6 @@
 
     <TextView
         android:id="@+id/email"
-        fontPath="font/Quicksand-Regular.otf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -83,6 +82,7 @@
         android:textAlignment="center"
         android:textColor="#424242"
         android:textSize="18sp"
+        fontPath="font/Quicksand-Regular.otf"
         tools:ignore="MissingPrefix" />
 
     <LinearLayout
@@ -122,5 +122,46 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="20dp"
+        >
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Support :"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textColor="#424242"
+            android:letterSpacing="-0.05"
+            fontPath="font/Quicksand-BoldItalic.otf"
+            tools:ignore="MissingPrefix"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/apilink"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textColor="#424242"
+            android:letterSpacing="-0.05"
+            fontPath="font/Quicksand-Regular.otf"
+            tools:ignore="MissingPrefix"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/flaticonlink"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textColor="#424242"
+            android:letterSpacing="-0.05"
+            fontPath="font/Quicksand-Regular.otf"
+            tools:ignore="MissingPrefix"/>
+
+    </LinearLayout>
 </LinearLayout>

@@ -11,7 +11,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="340dp"
         android:background="@color/background_barshadow"
         android:fitsSystemWindows="true">
 
@@ -43,23 +43,25 @@
 
                 <ImageView
                     android:id="@+id/detailPict"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="230dp"
+                    android:layout_height="230dp"
                     android:src="@drawable/photomissing" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginLeft="-10dp">
 
                     <TextView
                         android:id="@+id/shirtNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/detailPict"
-                        android:text="9"
+                        android:text="20"
+                        android:layout_marginTop="20dp"
                         android:textColor="@color/white"
-                        android:textSize="30sp"
+                        android:textSize="70sp"
                         fontPath="font/Quicksand-Bold.otf"
                         tools:ignore="MissingPrefix"
                         android:letterSpacing="-0.06"
@@ -72,47 +74,32 @@
                         android:layout_toRightOf="@id/detailPict"
                         android:text="Player Name"
                         android:textColor="@color/white"
-                        android:textSize="24sp"
+                        android:textSize="22sp"
+                        android:layout_marginBottom="10dp"
                         fontPath="font/Quicksand-Bold.otf"
                         tools:ignore="MissingPrefix"
                         android:letterSpacing="-0.06"
                         android:maxLines="2"
                         android:lines="1"
-                        android:ems="8" />
+                        android:ems="9"/>
 
                     <TextView
                         android:id="@+id/playerClub"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/detailPict"
-                        android:text="Position"
+                        android:text="Club"
                         android:textColor="@color/white"
-                        android:textSize="22sp"
+                        android:textSize="18sp"
                         fontPath="font/Quicksand-Bold.otf"
                         tools:ignore="MissingPrefix"
                         android:letterSpacing="-0.06"
                         android:maxLines="2"
                         android:lines="1"
-                        android:layout_marginTop="5dp"
                         android:ems="8"
                         />
 
-                    <TextView
-                        android:id="@+id/playerPosition"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/detailPict"
-                        android:text="Position"
-                        android:textColor="@color/white"
-                        android:textSize="22sp"
-                        fontPath="font/Quicksand-Bold.otf"
-                        tools:ignore="MissingPrefix"
-                        android:letterSpacing="-0.06"
-                        android:maxLines="2"
-                        android:lines="1"
-                        android:layout_marginTop="5dp"
-                        android:ems="8"
-                        />
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -131,7 +118,6 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_arrow_back_black_24dp" />
 
-
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -144,133 +130,213 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="AAAA"
-                android:textSize="40sp" />
+                android:text="Personal Details"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"
+                android:letterSpacing="-0.06"
+                fontPath="font/Quicksand-Bold.otf"
+                tools:ignore="MissingPrefix"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AAAA"
-                android:textSize="40sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:background="#CECECE" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="AAAA"
-                android:textSize="40sp" />
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AAAA"
-                android:textSize="40sp" />
+                <TextView
+                    android:id="@+id/tvplayerPosition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Position"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    fontPath="font/Quicksand-Regular.otf"
+                    tools:ignore="MissingPrefix"
+                    android:letterSpacing="-0.06"
+                    android:maxLines="2"
+                    android:lines="1"
+                    android:ems="8"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AAAA"
-                android:textSize="40sp" />
+                <TextView
+                    android:id="@+id/playerPosition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewEnd"
+                    android:text="Position"
+                    android:layout_toRightOf="@id/tvplayerPosition"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    fontPath="font/Quicksand-Bold.otf"
+                    tools:ignore="MissingPrefix"
+                    android:letterSpacing="-0.06"
+                    android:maxLines="2"
+                    android:lines="1"
+                    android:ems="8"/>
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AAAA"
-                android:textSize="40sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="AAAA"
-                android:textSize="40sp" />
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AAAA"
-                android:textSize="40sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Country of Birth"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    fontPath="font/Quicksand-Regular.otf"
+                    tools:ignore="MissingPrefix"
+                    android:letterSpacing="-0.06"
+                    android:maxLines="2"
+                    android:lines="1"
+                    android:ems="8"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AAAA"
-                android:textSize="40sp" />
+                <TextView
+                    android:id="@+id/playerCountryofBirth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewEnd"
+                    android:text="England"
+                    android:layout_toRightOf="@id/tvplayerPosition"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    fontPath="font/Quicksand-Bold.otf"
+                    tools:ignore="MissingPrefix"
+                    android:letterSpacing="-0.06"
+                    android:maxLines="2"
+                    android:lines="1"
+                    android:ems="8"/>
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="AAAA"
-                android:textSize="40sp" />
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AAAA"
-                android:textSize="40sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nationality"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    fontPath="font/Quicksand-Regular.otf"
+                    tools:ignore="MissingPrefix"
+                    android:letterSpacing="-0.06"
+                    android:maxLines="2"
+                    android:lines="1"
+                    android:ems="8"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AAAA"
-                android:textSize="40sp" />
+                <TextView
+                    android:id="@+id/playerNationality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewEnd"
+                    android:text="England"
+                    android:layout_toRightOf="@id/tvplayerPosition"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    fontPath="font/Quicksand-Bold.otf"
+                    tools:ignore="MissingPrefix"
+                    android:letterSpacing="-0.06"
+                    android:maxLines="2"
+                    android:lines="1"
+                    android:ems="8"/>
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="AAAA"
-                android:textSize="40sp" />
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AAAA"
-                android:textSize="40sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Age"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    fontPath="font/Quicksand-Regular.otf"
+                    tools:ignore="MissingPrefix"
+                    android:letterSpacing="-0.06"
+                    android:maxLines="2"
+                    android:lines="1"
+                    android:ems="8"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AAAA"
-                android:textSize="40sp" />
+                <TextView
+                    android:id="@+id/playerAge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewEnd"
+                    android:text="22 Years"
+                    android:layout_toRightOf="@id/tvplayerPosition"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    fontPath="font/Quicksand-Bold.otf"
+                    tools:ignore="MissingPrefix"
+                    android:letterSpacing="-0.06"
+                    android:maxLines="2"
+                    android:lines="1"
+                    android:ems="8"/>
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="AAAA"
-                android:textSize="40sp" />
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AAAA"
-                android:textSize="40sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date of Birth"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    fontPath="font/Quicksand-Regular.otf"
+                    tools:ignore="MissingPrefix"
+                    android:letterSpacing="-0.06"
+                    android:maxLines="2"
+                    android:lines="1"
+                    android:ems="8"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AAAA"
-                android:textSize="40sp" />
+                <TextView
+                    android:id="@+id/playerDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewEnd"
+                    android:text="22 October 2019"
+                    android:layout_toRightOf="@id/tvplayerPosition"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    fontPath="font/Quicksand-Bold.otf"
+                    tools:ignore="MissingPrefix"
+                    android:letterSpacing="-0.06"
+                    android:maxLines="2"
+                    android:lines="1"
+                    android:ems="8"/>
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AAAA"
-                android:textSize="40sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AAAA"
-                android:textSize="40sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AAAA"
-                android:textSize="40sp" />
+
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
